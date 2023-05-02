@@ -1,30 +1,45 @@
 package exercise.model;
 
-public interface ConditionSummary {
+import java.util.Objects;
 
-    String getType();
-    String getValue();
-    Integer getCount();
+/**
+ *   This represents a summary of a single condition.
+ */
+public class ConditionSummary {
 
-    /**
-     *  To simplify the project structure this is a basic implementation that can be used for this exercise.
-     */
-    public class ConditionSummaryImpl implements ConditionSummary {
+        private final String type;
+        private final String value;
+        private final Integer additionalCount;
 
-        @Override
+    public ConditionSummary(final String type, final String value, final Integer additionalCount) {
+            this.type = type;
+            this.value = value;
+            this.additionalCount = additionalCount;
+        }
+
         public String getType() {
-            return null;
+            return type;
         }
 
-        @Override
         public String getValue() {
-            return null;
+            return value;
         }
 
-        @Override
-        public Integer getCount() {
-            return null;
+        public Integer getAdditionalCount() {
+            return additionalCount;
         }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        ConditionSummary that = (ConditionSummary) o;
+        return Objects.equals(type, that.type) && Objects.equals(value, that.value) && Objects.equals(additionalCount, that.additionalCount);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(type, value, additionalCount);
     }
 
 }

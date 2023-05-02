@@ -1,32 +1,40 @@
 package exercise.model;
 
 import java.util.List;
+import java.util.Objects;
 
-public interface Condition {
+/**
+ *  The condition is a domain object.
+ */
+public class Condition {
 
-    String getType();
-    String getOperator();
-    List<String> getValues();
+    final private String type;
+    final private List<String> values;
 
-    /**
-     *  To simplify the project structure this is a basic implementation that can be used for this exercise.
-     */
-    public class ConditionA implements Condition {
+    public Condition(final String type, final List<String> values) {
+        this.type = type;
+        this.values = values;
+    }
 
-        @Override
-        public String getType() {
-            return null;
-        }
+    public String getType() {
+        return type;
+    }
 
-        @Override
-        public String getOperator() {
-            return null;
-        }
+    public List<String> getValues() {
+        return values;
+    }
 
-        @Override
-        public List<String> getValues() {
-            return null;
-        }
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Condition condition = (Condition) o;
+        return Objects.equals(type, condition.type) && Objects.equals(values, condition.values);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(type, values);
     }
 
 }
